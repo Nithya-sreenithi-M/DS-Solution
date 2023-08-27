@@ -1,0 +1,79 @@
+// Solution: https://www.youtube.com/watch?v=i5I_wrbUdzM
+//Problem: https://leetcode.com/problems/greatest-common-divisor-of-strings/?envType=study-plan-v2&envId=leetcode-75
+
+//BF method
+
+class Solution {
+    public String gcdOfStrings(String str1, String str2) {
+        String small, large;
+        int smallL, largeL;
+        if(str1.length() != str2.length())
+        {
+            small = str1.length()<str2.length() ? str1: str2;
+             large = str2.length()<str1.length() ? str1: str2;
+              smallL = small.length();
+              largeL = large.length();
+        }
+        else{
+              small = str1;  large = str2;   largeL = str2.length();
+              smallL = str2.length();
+        }
+        int i = smallL;
+
+        while( i>0 ){
+            System.out.println("i "+ i );
+            System.out.println("GDC with l 3 can't make l 4 input: " + (smallL%i !=0));
+            if(smallL%i !=0 || largeL%i !=0)
+            {
+                i--;
+                continue;
+            }
+            
+            String GDC = small.substring(0,i);
+            System.out.println("GDC  " +  GDC  );
+            StringBuilder repeatstring = new StringBuilder();
+            int repeat = largeL / GDC.length();
+            System.out.println("repeat   " +  repeat   );
+            int flag = 0;
+            while(repeat >0)
+            {
+                
+                repeatstring.append(GDC);
+                System.out.println("repeatstring " + repeatstring  );
+                repeat--;
+                if(repeatstring.toString().equals(small)) flag = 1;
+                System.out.println("flag " + flag  );
+            }
+           
+            if(smallL == largeL){
+
+                if(repeatstring.toString().equals(large) && repeatstring.toString().equals(small))      {
+                    System.out.println(repeatstring.toString().equals(large) && repeatstring.toString().equals(small));
+                    return GDC;
+                }
+            }
+            else if (repeatstring.toString().equals(large) && flag == 1)
+            {
+                 System.out.println(" repeatstring.equals(large): " + repeatstring.toString().equals(large)   );
+                return GDC;
+            }
+            i--;
+        }
+        return "";
+    }
+}
+// optimized
+class Solution {
+    public String gcdOfStrings(String str1, String str2) {
+      
+        if (!(str1 + str2).equals(str2 + str1))
+            return "";
+       
+        int gcd = gcd(str1.length(), str2.length());
+        return str1.substring(0, gcd);
+    }
+
+    private int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+}
