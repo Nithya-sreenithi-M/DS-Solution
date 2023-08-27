@@ -1,0 +1,23 @@
+class Solution {
+    public String mergeAlternately(String word1, String word2) {
+        int lengthofword = (word1.length()>word2.length())? word2.length(): word1.length();      
+        String result = "";
+        int i =0;
+        for(; i<lengthofword; i++)
+        {
+            result +=word1.charAt(i);
+            result +=word2.charAt(i);
+        }
+        if(lengthofword==word1.length())
+        {
+            String substr = word2.substring(i,word2.length());
+            return result.concat(substr);
+        }
+        else{
+            String substr = word1.substring(i,word1.length());
+            return result.concat(substr);
+        
+        }
+    
+    }
+}
