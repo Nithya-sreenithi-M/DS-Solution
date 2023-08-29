@@ -1,3 +1,39 @@
+//Brute force
+class Solution {
+    public String reverseVowels(String s) {
+        String fw;
+        StringBuilder firstvowels = new StringBuilder();
+
+        for(int i =0 ; i < s.length() ; i++){
+            if(s.charAt(i)=='a' || s.charAt(i)== 'e' || s.charAt(i) == 'i' || s.charAt(i)== 'o' || s.charAt(i) == 'u'|| s.charAt(i)=='A' || s.charAt(i)== 'E' || s.charAt(i) == 'I' || s.charAt(i)== 'O' || s.charAt(i) == 'U')
+            {
+                firstvowels.append(s.charAt(i));
+            }
+        }
+        fw = firstvowels.toString();
+        firstvowels = new StringBuilder(s);
+        for( int j=s.length()-1 ;  j >=0 ; j--){
+            
+            if(s.charAt(j)=='a' || s.charAt(j)== 'e' || s.charAt(j) == 'i' || s.charAt(j)== 'o' || s.charAt(j) == 'u'
+            || s.charAt(j)=='A' || s.charAt(j)== 'E' || s.charAt(j) == 'I' || s.charAt(j)== 'O' || s.charAt(j) == 'U')
+            {   
+                firstvowels.setCharAt(j, fw.charAt((0)));
+               fw = fw.substring(1);
+               
+            }
+            
+        }
+        return firstvowels.toString();
+    }
+}
+
+/*
+
+*/
+
+
+
+
 class Solution {
     public String reverseVowels(String s) {
         char[] word = s.toCharArray();
